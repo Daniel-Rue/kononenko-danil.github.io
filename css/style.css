@@ -1,0 +1,121 @@
+body{
+    width: 200px;
+}
+
+.container {
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+}
+
+#room1 {
+    position: inherit;
+    height: 200px;
+    width: 200px;
+    background-image: url("../image/background1.png");
+    padding: 20x;
+    animation-delay: 3s;
+}
+
+
+#boy1 {
+    position: inherit;
+    height: 200px;
+    width: 129px;
+    scale: 0.7;
+    top: 30px;
+    left: -40px;
+    opacity: .0;
+    background-image: url(../image/boy1.png);
+    transition: all 1s ease-out;
+    cursor: pointer;
+}
+
+#text1 {
+    position: inherit;
+    top: 180px;
+    left: 20px;
+    color: aliceblue;
+    transition: all 0.5s ease-out;
+    opacity: 0;
+}
+
+#boy2 {
+    position: inherit;
+    height: 200px;
+    width: 129px;
+    scale: 0.7;
+    top: 30px;
+    left: 100px;
+    opacity: .0;
+    background-image: url(../image/boy2.png);
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+}
+
+#text2 {
+    position: inherit;
+    top: -35px;
+    left: -175px;
+    rotate: -30deg;
+    font-size: 1.4rem;
+    color: rgb(58, 255, 32)  ;
+    transition: all 1s ease-out;
+}
+
+#vane {
+    position: inherit; 
+    height: 125px;
+    width: 125px;
+    top: -15px;
+    left: -55px;
+    scale: 0.4;   
+    background-image: url(../image/vane.png);
+
+    animation: 3s linear infinite rotate;
+}
+
+
+#stick {
+    position: inherit; 
+    height: 92px;
+    width: 116px;
+    top: 15px;
+    left: -33px;
+    scale: 0.7;
+    background-image: url(../image/stick.png);
+}
+
+body:hover #boy1 {
+    opacity: 1;
+    transform: translate(180px,0);
+}
+body:hover #text1 {
+    opacity: 1;
+}
+
+.container:active #boy1{
+    opacity: 0;
+}
+.container:active #text1{
+    opacity: 0;
+}
+.container:active #boy2{
+    opacity: 1;
+}
+.container:active #room1{
+    transition-delay: 0.5s;
+    filter: sepia(40%);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+      }
+}
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site-layout</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" 
+    integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div id="header"class="header-nav">
+                <a href="#header" class="logo">Danil</a>
+
+                <nav id="nav" class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#header" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="#tasks" class="nav-link">Tasks</a></li>
+                    </ul>
+                    <button id="nav-btn" class="nav-button">
+                        <img id="nav-btn-img" src="image/nav-open.svg" alt="Nav button">
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Header content -->
+            <div class="header-row">
+                <div class="header-content" data-aos="fade-up">
+                    <h1 class="heading">
+                        Kononenko Danil <br>
+                        <span> Student & Web-Designer</span> <br>
+                    </h1>
+                    <p>I'am the best programmer in the world.</p>
+                </div>
+                <div class="header-image" data-aos="fade-left">
+                    <img src="image/hero.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="services">
+        <div id="tasks" class="container">
+            <div class="services-row">
+                    <div class="service-card">
+                        <a href="#!"><img class="service-card-img" src="image/dog.png" alt=""></a>
+                        <h3 class="service-card-title">Задание 1</h3>
+                        <p>Create drawings using a style sheet</p>
+                    </div>
+
+                    <div class="service-card">
+                        <a href="task_2.html"><img class="service-card-img" src="image/background1.png" alt=""></a>
+                        <h3 class="service-card-title">Задание 2</h3>
+                        <p>Create a flexbox element that consists of the given images and words.</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="contacts">
+       <div class="container">
+         <div class="contacts-title">
+             <h2 class="title-1">Contacts</h2>
+         </div>
+         <div class="contacts-social">
+             <a href="#!"><img src="image/VK_black.png" alt="VK_black"></a>
+             <a href="#!"><img src="image/Instagram_black.png" alt="Instagram_black"></a>
+             <a href="#!"><img src="image/Twitter_black.png" alt="Twitter_black"></a>
+             <a href="#!"><img src="image/Facebook_black.png" alt="Facebook_black"></a>
+         </div>
+         <div class="contacts-footer">
+            Like me on <br> VK, Instagram, Twitter, Facebook
+         </div>
+       </div> 
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" 
+    integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/main.js"></script>
+
+   
+
+
+</body>
+</html>
