@@ -1,0 +1,55 @@
+html, body
+{
+    height:100%;
+}
+.container {
+    margin: auto;
+    max-height: 1280px;
+    width: 70%;
+    height: 100%;
+    padding-bottom: 6%;
+    background-color: #f5e4a9;
+}
+
+.buttons {
+    padding-left:5%;
+    display: flex;
+    column-gap: 20px;
+}
+
+#phraseField {
+    position:relative;
+    margin:auto;
+    height:100%;
+    width:100%;
+}
+
+#noPhrases {
+    text-align: center;
+    display: none;
+}
+
+
+.phrase 
+{
+    width: 100px;
+    height: 50px;
+    position:absolute;  
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    font-size: 14px;
+    
+    border: solid;
+    border-color: black;
+    border-radius: 2px;
+
+    transform: translate(-50%,-50%);
+    transition: all .2s ease-in-out;
+}
+
+.phrase:hover 
+{ 
+    transform: translate(-50%, -50%) scale(1.2);
+}
