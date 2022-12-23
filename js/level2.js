@@ -54,7 +54,7 @@ var strikePower = 0;
 var timer = 0;
 var puckAcceleration = 1;
 var username;
-var timeLimit = 20;
+var timeLimit = 40;
 
 canvas.addEventListener("mousemove", function(event) {
     player.x=event.offsetX-25;
