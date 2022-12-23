@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/leaderboardStyle.css">
+    <title>Document</title>
+</head>
+<body onload="createLeaderboard()">
+    <div class="table-title">
+        <h3>Таблица лидеров</h3>
+    </div>
+        <table class="table-fill">
+        <thead>
+        <tr>
+        <th class="text-left">Username</th>
+        <th class="text-left">Score</th>
+        </tr>
+        </thead>
+        <tbody class="table-hover">
+        <tr>
+        <td id="firstName" class="text-left"></td>
+        <td id="firstScore" class="text-left"></td>
+        </tr>
+        <tr>
+        <td id="secondName" class="text-left"></td>
+        <td id="secondScore" class="text-left"></td>
+        </tr>
+        <tr>
+        <td id="thirdName" class="text-left"></td>
+        <td id="thirdScore" class="text-left"></td>
+        
+        </tbody>
+        </table>
+        <div id="buttons">
+            <button class="buttons" id="menu" onclick="goToMenu()">Перейти в меню</button>
+        </div>
+        <script src="js/leaderboard.js"></script>
+</body>
+</html>
