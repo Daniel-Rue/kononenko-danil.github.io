@@ -44,6 +44,7 @@ var isPuckThrown = false;
 var isPlayerPreparing = false;
 var isGoal = false;
 var isMiss = false;
+var timeIsOver = false;
 
 //переменные
 var usersScores = {};
@@ -124,11 +125,11 @@ function update() {
     }
     if (timeLimit == 0)
     {
-        alert("Ваше время вышло!");
         isMiss = true;
+        timeIsOver = true;
         endLevel();
         return;
-    }
+    } 
 
     //goalKeeeper Physx
     goalKeeper.y += goalKeeper.dy;
@@ -173,8 +174,8 @@ function update() {
         }
     }
     else {
-        puck.x = player.x+50;
-        puck.y = player.y+35;
+        puck.x = player.x+60;
+        puck.y = player.y+45;
     }
 
     if ((puck.x + puck.w >= goal.x) 
@@ -201,9 +202,9 @@ function update() {
 
 function render() {
     ctx.drawImage(backgroundImg, 0, 0, 1000, 600);
+    ctx.drawImage(puckImg, puck.x, puck.y, puck.w, puck.h);
     if (isPuckThrown){
         ctx.drawImage(playerStrike, player.x, player.y, 70, 70);
-        ctx.drawImage(puckImg, puck.x, puck.y, puck.w, puck.h);
     }else {
         ctx.drawImage(playerIdle, player.x, player.y, 70, 70);
     }
@@ -211,14 +212,19 @@ function render() {
     ctx.drawImage(goalKeeperImg, goalKeeper.x, goalKeeper.y, goalKeeper.w, goalKeeper.h)
 
     if (isGoal){
-        ctx.fillStyle = "#DC143C";     
         ctx.font = "50px Verdana";
+        ctx.fillStyle = "#DC143C";    
         ctx.fillText("ГОООООООЛ!!!",320, 780);
         nextLvlBtn.style.display = "block";
-    }else if (isMiss){
+    }else if (isMiss && !timeIsOver){
         ctx.font = "50px Verdana";  
-        ctx.fillStyle = "#DC143C"; 
-        ctx.fillText("ПРОИГРАЛ",360, 780);
+        ctx.fillStyle = "#DC143C";  
+        ctx.fillText("ПРОИГРАЛ!",360, 780);
+    }else if (timeIsOver)
+    {
+        ctx.font = "50px Verdana";  
+        ctx.fillStyle = "#DC143C";  
+        ctx.fillText("Время вышло!",315, 780);
     }
 
     ctx.fillStyle = "#000";  

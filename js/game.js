@@ -42,6 +42,7 @@ var isPuckThrown = false;
 var isPlayerPreparing = false;
 var isGoal = false;
 var isMiss = false;
+var timeIsOver = false;
 
 //переменные
 var usersScores = {};
@@ -53,6 +54,7 @@ var timer = 0;
 var puckAcceleration = 1;
 var username;
 var timeLimit = 40;
+var currentPlayerState = 0;
 
 //отслеживание ввода 
 canvas.addEventListener("mousemove", function(event) {
@@ -60,16 +62,23 @@ canvas.addEventListener("mousemove", function(event) {
     player.y=event.offsetY-13;
 });
 canvas.addEventListener("mouseup", function(event){
-    isPuckThrown = true;
-    isPlayerPreparing = false;
-    if(!isMiss && !isGoal)
-    hitSound.play();
+    if (event.button == 0)
+    {
+        isPuckThrown = true;
+        isPlayerPreparing = false;
+        puck.dx *= strikePower;
+        puck.dy *= strikePower;
+        if(!isMiss && !isGoal)
+        hitSound.play();
+    }
 
 });
 canvas.addEventListener("mousedown", function(event){
+    if (event.button == 0)
     isPlayerPreparing = true;
+    else if (event.button == (1))
+    rotatePlayer();
 });
-
 
 backgroundImg.onload = function() {
     settings();
@@ -122,8 +131,8 @@ function update() {
     }
     if (timeLimit == 0)
     {
-        alert("Ваше время вышло!");
         isMiss = true;
+        timeIsOver = true;
         endLevel();
         return;
     } 
@@ -148,6 +157,10 @@ function update() {
         puck.dx = -puck.dx;
         hitWallSound.play();
     }
+    if (puck.y <= 0)
+    puck.dy = -puck.dy;
+    if (puck.y + puck.h >= 599)
+    puck.dy = -puck.dy;
 
     if (isPuckThrown)
     {
@@ -161,9 +174,17 @@ function update() {
             isMiss = true;
             endLevel();
         }
-    }else {
-        puck.x = player.x+50;
-        puck.y = player.y+35;
+    }else if(currentPlayerState == 0){
+        puck.x = player.x+60;
+        puck.y = player.y+45;
+    }else if(currentPlayerState == 1)
+    {
+        puck.x = player.x+40;
+        puck.y = player.y+55;
+    }else if(currentPlayerState == 2)
+    {
+        puck.x = player.x+70;
+        puck.y = player.y+25;
     }
 
     if ((puck.x + puck.w >= goal.x) 
@@ -179,9 +200,9 @@ function update() {
 
 function render() {
     ctx.drawImage(backgroundImg, 0, 0, 1000, 600);
+    ctx.drawImage(puckImg, puck.x, puck.y, puck.w, puck.h);
     if (isPuckThrown){
         ctx.drawImage(playerStrike, player.x, player.y, 70, 70);
-        ctx.drawImage(puckImg, puck.x, puck.y, puck.w, puck.h);
     }else {
         ctx.drawImage(playerIdle, player.x, player.y, 70, 70);
     }
@@ -191,10 +212,15 @@ function render() {
         ctx.fillStyle = "#DC143C";    
         ctx.fillText("ГОООООООЛ!!!",320, 780);
         nextLvlBtn.style.display = "block";
-    }else if (isMiss){
+    }else if (isMiss && !timeIsOver){
         ctx.font = "50px Verdana";  
         ctx.fillStyle = "#DC143C";  
-        ctx.fillText("ПРОИГРАЛ",360, 780);
+        ctx.fillText("ПРОИГРАЛ!",360, 780);
+    }else if (timeIsOver)
+    {
+        ctx.font = "50px Verdana";  
+        ctx.fillStyle = "#DC143C";  
+        ctx.fillText("Время вышло!",315, 780);
     }
 
     ctx.fillStyle = "#000";  
@@ -213,13 +239,36 @@ function render() {
     ctx.fillText("Общий счёт: " + globalScore,710,685);
 }
 
+function rotatePlayer()
+{
+    switch(currentPlayerState){
+        case 0:
+            currentPlayerState++;
+            puck.dy = 1;
+            playerIdle.src = 'image/playerDown.png';
+            playerStrike.src = 'image/playerStrikeDown.png';
+            break;
+        case 1:
+            currentPlayerState++;
+            puck.dy = -1;
+            playerIdle.src = 'image/playerUp.png';
+            playerStrike.src = 'image/playerStrikeUp.png';
+            break;
+        case 2:
+            currentPlayerState = 0;
+            puck.dy = 0;
+            playerIdle.src = 'image/playerIdle.png';
+            playerStrike.src = 'image/playerStrike.png';
+            break;
+    }
+}
+
 function changeStrikePower() {
     strikePower += 1 ;
     if (strikePower > 10)
     {
         strikePower = 1;
     }
-    puck.dx = strikePower;
 }
 
 function nextPage()
